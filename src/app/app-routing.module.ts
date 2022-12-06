@@ -14,16 +14,16 @@ const routes: Routes = [
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
-    path: 'mahasiswa',
-    loadChildren: () => import('./mahasiswa/mahasiswa.module').then( m => m.MahasiswaPageModule)
+    path: 'buku',
+    loadChildren: () => import('./buku/buku.module').then( m => m.BukuPageModule)
+  },
+  { 
+    path: 'buku-tambah',
+    loadChildren: () => import('./buku-tambah/buku-tambah.module').then( m => m.BukuTambahPageModule)
   },
   {
-    path: 'mahasiswa-tambah',
-    loadChildren: () => import('./mahasiswa-tambah/mahasiswa-tambah.module').then( m => m.MahasiswaTambahPageModule)
-  },
-  {
-    path: 'mahasiswa-edit/:nim',
-    loadChildren: () => import('./mahasiswa-edit/mahasiswa-edit.module').then( m => m.MahasiswaEditPageModule)
+    path: 'buku-edit/:id',
+    loadChildren: () => import('./buku-edit/buku-edit.module').then( m => m.BukuEditPageModule)
   },
   {
     path: 'login',

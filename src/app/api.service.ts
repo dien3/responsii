@@ -14,23 +14,23 @@ export class ApiService {
 
    //link API
    apiURL(){
-    return "http://localhost/api"
+    return "http://localhost/buku"
    }
 
-   getMahasiswa(){
+   getBuku(){
     return this.http.get(this.apiURL()+'/tampil.php');
    }
 
-   deleteMahasiswa(id,name){
-    return this.http.delete(this.apiURL()+'/hapus.php?nim='+id+'&nama='+name);
+   deleteBuku(id,name){
+    return this.http.delete(this.apiURL()+'/hapus.php?id_buku='+id+'&judul_buku='+name);
    }
 
   //  deleteUserMahasiswa(id){
   //   return this.http.delete(this.apiURL()+'/hapus_user.php?nama='+id);
   //  }
 
-   ambilMahasiswa(id){ //, name   +'&nama='+name
-    return this.http.get(this.apiURL()+'/lihat.php?nim='+id);
+   ambilBuku(id){ //, name   +'&nama='+name
+    return this.http.get(this.apiURL()+'/lihat.php?id_buku='+id);
    }
 
 }

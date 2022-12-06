@@ -28,7 +28,7 @@ export class AuthenticationService {
   }
 
   apiURL(){
-    return "http://localhost/api/";
+    return "http://localhost:8100/buku/";
   }
 
   logout(): Promise<void> {

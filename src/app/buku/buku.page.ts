@@ -6,16 +6,15 @@ import { ApiService } from '../api.service';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
-  selector: 'app-mahasiswa',
-  templateUrl: './mahasiswa.page.html',
-  styleUrls: ['./mahasiswa.page.scss'],
+  selector: 'app-buku',
+  templateUrl: './buku.page.html',
+  styleUrls: ['./buku.page.scss'],
 })
-export class MahasiswaPage {
-  nim: any;
-  nama: any;
-  alamat: any;
-  username: any;
-  mahasiswa: any[];
+export class BukuPage {
+  id_buku: any;
+  judul_buku: any;
+  keterangan: any;
+  buku: any[];
 
   constructor(
     public _apiService: ApiService,
@@ -24,7 +23,7 @@ export class MahasiswaPage {
     private authService: AuthenticationService,
     private router: Router
   ) {
-    this.getMahasiswa();
+    this.getBuku();
    }
 
   ngOnInit() {
@@ -33,18 +32,18 @@ export class MahasiswaPage {
 
   ionViewDidEnter(){
     console.log("jika selesai loading");
-    this.getMahasiswa();
+    this.getBuku();
   }
 
-  getMahasiswa(){
-    this._apiService.getMahasiswa().subscribe((res:any)=>{
+  getBuku(){
+    this._apiService.getBuku().subscribe((res:any)=>{
       console.log("sukses",res);
-      this.mahasiswa=res;
+      this.buku=res;
     }, (error:any)=>{
       console.log("gagal", error);
       this.alertController.create({
         header: 'Notifikasi',
-        message:'Gagal memuat data mahasiswa',
+        message:'Gagal memuat data buku',
         buttons: ['OK']
       }).then(res=>{
         res.present();
@@ -52,7 +51,7 @@ export class MahasiswaPage {
     })
   }
 
-  deleteMahasiswa(id,name){
+  deleteBuku(id,name){
     this.alertController.create({
       header:'Perhatian',
       subHeader:'Yakin untuk menghapus?',
@@ -66,12 +65,12 @@ export class MahasiswaPage {
           text:'Yakin',
           handler:(data:any)=>{
             //jika tekan yakin 
-            this._apiService.deleteMahasiswa(id,name).subscribe((res:any)=>{
+            this._apiService.deleteBuku(id,name).subscribe((res:any)=>{
               console.log("sukses",res);
-              this.getMahasiswa();
+              this.getBuku();
               this.alertController.create({
                 header:'Notifikasi',
-                message: 'Berhasil hapus data mahasiswa',
+                message: 'Berhasil hapus data buku',
                 buttons:['OK']
               }).then(res=>{
                 res.present();
@@ -80,7 +79,7 @@ export class MahasiswaPage {
               console.log("gagal",error);
               this.alertController.create({
                 header:'Notifikasi',
-                message:'Gagal memuat data mahasiswa',
+                message:'Gagal memuat data buku ',
                 buttons:['OK']
               }).then(res=>{
                 res.present();

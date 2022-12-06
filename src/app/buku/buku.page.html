@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>      
+    </ion-buttons>
+    <ion-title>Data Buku</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true"> 
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Data Buku</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list lines="full">
+    <ion-button type="button" [routerLink]="['/buku-tambah']"
+    routerLinkActive="router-link-active" color="success"
+    expand="block">Tambah Buku</ion-button>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>List Data Buku</ion-list-header>
+  </ion-list>
+
+  <ion-card lines="inset" *ngFor="let buku_value of buku">
+    <ion-item>
+      <ion-icon name="book" slot="start"></ion-icon>
+      <ion-label>{{ buku_value.judul_buku }}</ion-label>
+      <ion-icon name="create-outline" color="primary" slot="end" [routerLink]="['/buku-edit/', buku_value.id_buku]" routerLinkActive="router-link-active"></ion-icon>
+      <!-- <ion-button  >Edit</ion-button> -->
+      <ion-icon name="close-circle" color="danger" slot="end" (click)="deleteBuku(buku_value.id_buku, buku_value.judul_buku)"></ion-icon>
+      <!-- <ion-button >Hapus</ion-button> -->
+    </ion-item>
+  </ion-card>
+</ion-content>

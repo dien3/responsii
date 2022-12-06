@@ -6,15 +6,14 @@ import { Http } from '@capacitor-community/http';
 import { Alert } from 'selenium-webdriver';
 
 @Component({
-  selector: 'app-mahasiswa-tambah',
-  templateUrl: './mahasiswa-tambah.page.html',
-  styleUrls: ['./mahasiswa-tambah.page.scss'],
+  selector: 'app-buku-tambah',
+  templateUrl: './buku-tambah.page.html',
+  styleUrls: ['./buku-tambah.page.scss'],
 })
-export class MahasiswaTambahPage implements OnInit {
-  nim:any;
-  nama:any;
-  password:any;
-  alamat:any;
+export class BukuTambahPage implements OnInit {
+  id_buku:any;
+  judul_buku:any;
+  keterangan:any;
   
   constructor(
     private route: ActivatedRoute,
@@ -27,36 +26,34 @@ export class MahasiswaTambahPage implements OnInit {
   ngOnInit() {
   }
 
-  addMahasiswa(){
+  addBuku(){
     let url=this._apiService.apiURL()+"/tambah.php";
     Http.request({
       method: "POST",
       url: url,
-      headers: { "Content-Type" : "application/json"},
+      headers: { "Content-Type" : "application/json" },
       data:{
-        nim:this.nim,
-        nama:this.nama,
-        password:this.password,
-        alamat:this.alamat
+        id_buku:this.id_buku,
+        judul_buku:this.judul_buku,
+        keterangan:this.keterangan,
       },
     }).then((data)=>{
-      this.nim= '';
-      this.nama= '';
-      this.password= '',
-      this.alamat= '';
+      this.id_buku= '';
+      this.judul_buku= '';
+      this.keterangan= '';
       this.alertController.create({
         header: 'Notifikasi',
-        message: 'Berhasil menambahkan data mahasiswa',
+        message: 'Berhasil menambahkan data buku',
         buttons: ['OK'],
       }).then(res=>{
         res.present();
       });
-      //setelah menambahkan data pindah ke halaman mahasiswa
-      this.router.navigateByUrl('/mahasiswa');
+      //setelah menambahkan data pindah ke halaman buku
+      this.router.navigateByUrl('/buku');
     }, (error)=>{
       this.alertController.create({
         header:'Notifikasi',
-        message: 'Gagal menambahkan data mahasiswa',
+        message: 'Gagal menambahkan data buku',
         buttons:['OK'],
       }).then(res=>{
         res.present();
